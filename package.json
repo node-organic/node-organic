@@ -1,0 +1,21 @@
+{
+  "author": "",
+  "name": "organic",
+  "version": "0.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/VarnaLab/node-organic.git"
+  },
+  "bin": {
+    "cell": "./bin/cell.js"
+  },
+  "main": "./index.js",
+  "dependencies": {
+    
+  },
+  "devDependencies": {},
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
