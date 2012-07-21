@@ -1,0 +1,10 @@
+{
+  "holes":[
+    "/holes/httpServer"
+  ],
+  "organelles": [
+    "/organelles/pageRouter",
+    "/organelles/dataFetcher",
+    "/organelles/pageRender"
+  ]
+}

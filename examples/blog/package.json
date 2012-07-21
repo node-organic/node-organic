@@ -1,0 +1,15 @@
+{
+  "author": "",
+  "name": "organic-blog",
+  "version": "0.0.0",
+  "dependencies": {},
+  "devDependencies": {
+    "express":"latest",
+    "consolidate": "latest",
+    "jade": "latest"
+  },
+  "optionalDependencies": {},
+  "engines": {
+    "node": "*"
+  }
+}
