@@ -1,10 +1,17 @@
 {
-  "holes":[
-    "/holes/httpServer"
+  "membrane":[
+    {
+      "path": "/membrane/httpServer",
+      "name": "httpServer"
+    },
+    {
+      "path": "/membrane/websocketServer",
+      "name": "websocketServer"
+    }
   ],
-  "organelles": [
-    "/organelles/pageRouter",
-    "/organelles/dataFetcher",
-    "/organelles/pageRender"
+  "plasma": [
+    "/plasma/pageRouter",
+    "/plasma/dataFetcher",
+    "/plasma/pageRender"
   ]
 }

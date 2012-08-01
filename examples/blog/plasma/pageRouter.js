@@ -7,9 +7,16 @@ module.exports = function PageRouter(plasma){
 
   this.on("httpRequest", function(chemical){
     chemical.type = "renderPage";
+    // default page - index
     chemical.page = "/index";
+    
     if(chemical.req.url != "/")
       chemical.page = chemical.req.url;
+
+    // everything which starts with admin point to /admin/index
+    if(chemical.page.indexOf("/admin") == 0)
+      chemical.page = "/admin/index";
+    
     this.emit(chemical);
   });
 }

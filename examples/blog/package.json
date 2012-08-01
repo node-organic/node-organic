@@ -6,7 +6,8 @@
   "devDependencies": {
     "express":"latest",
     "consolidate": "latest",
-    "jade": "latest"
+    "jade": "latest",
+    "socket.io": "latest"
   },
   "optionalDependencies": {},
   "engines": {
