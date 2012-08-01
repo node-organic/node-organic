@@ -2,15 +2,14 @@ var util = require("util");
 var Organel = require("organic").Organel;
 var Chemical = require("organic").Chemical;
 
-module.exports = function Page(plasma){
+module.exports = function DataFetcher(plasma){
   Organel.call(this, plasma);
 
-  plasma.on("renderPage", function(chemical){
-    if(!chemical.page)
-      return;
+  this.on("renderPage", function(chemical){
     chemical.data = {
       version: "0.0.0"
     }
+    this.emit(chemical);
   });
 }
 

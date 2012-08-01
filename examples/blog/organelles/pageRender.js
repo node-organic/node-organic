@@ -5,26 +5,38 @@ var cons = require("consolidate");
 var fs = require("fs");
 var path = require("path");
 
-module.exports = function Page(plasma){
+module.exports = function PageRender(plasma){
   Organel.call(this, plasma);
 
-  plasma.on("renderPage", function(chemical){
+  var self = this;
+  this.on("renderPage", function(chemical){
     if(!chemical.page)
-      throw new Error("recieving chemical without page");
-    
-    var found = path.existsSync(process.cwd()+"/template"+chemical.page+".jade");
-    if(found)
-      cons.jade(process.cwd()+"/template"+chemical.page+".jade", chemical.data || {}, function(err, renderedData){
-        //if(err) ;
-        var response = new Chemical();
-        response.type = "httpResponse";
-        response.data = renderedData;
-        response.req = chemical.req;
-        plasma.emit(response);
-      });
-
-    return found;
+      this.emit(new Error("recieving chemical without page"));
+  
+    path.exists(process.cwd()+"/template"+chemical.page+".jade", function(found){
+      if(found)
+        cons.jade(process.cwd()+"/template"+chemical.page+".jade", chemical.data || {}, self.render(chemical));
+      else
+        cons.jade(process.cwd()+"/template/404.jade", chemical.data || {}, self.render(chemical));
+    });
   });
 }
 
 util.inherits(module.exports, Organel);
+
+module.exports.prototype.render = function(chemical) {
+  
+  var self = this;
+  return function(err, renderedData){
+    if(err)
+      self.emit(err);
+
+    var response = new Chemical();
+    response.type = "httpResponse";
+    response.data = renderedData;
+    
+    //  pass req to "httpResponse" chemical to return that through httpServer
+    response.req = chemical.req;
+    self.emit(response);
+  }
+}

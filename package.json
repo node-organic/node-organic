@@ -11,7 +11,7 @@
   },
   "main": "./index.js",
   "dependencies": {
-    
+    "colors": "latest"
   },
   "devDependencies": {},
   "optionalDependencies": {},

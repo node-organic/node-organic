@@ -9,4 +9,5 @@ node-organic-blog
 run by 
 - cd in ./examples/blog
 - npm link ../../
+- npm install
 - cell
