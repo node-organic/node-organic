@@ -1,0 +1,7 @@
+{
+  "name": "organic-helloworld",
+  "version": "0.0.0",
+  "dependencies": {
+    "organic": "latest"
+  }
+}
