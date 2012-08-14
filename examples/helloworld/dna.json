@@ -1,9 +1,4 @@
 {
-  "membrane": [
-    "/membrane/Prompt"
-  ],
-  "plasma": [
-    "/plasma/Colorize",
-    "/plasma/HelloWorld"
-  ]
+  "membrane": {},
+  "plasma": {}
 }

@@ -5,6 +5,7 @@ module.exports = function ErrorHandler(plasma){
   Organel.call(this, plasma);
 
   this.on("answer", function(chemical){
+    chemical.type = "print";
     chemical.data = chemical.data.rainbow;
     return false;
   });

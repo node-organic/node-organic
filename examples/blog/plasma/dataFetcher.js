@@ -5,7 +5,8 @@ var Chemical = require("organic").Chemical;
 module.exports = function DataFetcher(plasma){
   Organel.call(this, plasma);
 
-  this.on("renderPage", function(chemical){
+  this.on("fetchData", function(chemical){
+    chemical.type = "renderPage";
     chemical.data = {
       version: "0.0.0"
     }

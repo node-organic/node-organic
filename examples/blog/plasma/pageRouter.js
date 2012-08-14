@@ -6,7 +6,7 @@ module.exports = function PageRouter(plasma){
   Organel.call(this, plasma);
 
   this.on("httpRequest", function(chemical){
-    chemical.type = "renderPage";
+    chemical.type = "fetchData";
     // default page - index
     chemical.page = "/index";
     

@@ -4,7 +4,7 @@ var Organel = require("organic").Organel;
 module.exports = function ErrorHandler(plasma){
   Organel.call(this, plasma);
 
-  this.on("answer", function(chemical){
+  this.on("print", function(chemical){
     console.log("Thank you for your feedback:", chemical.data);
   });
 }

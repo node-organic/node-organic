@@ -1,17 +1,6 @@
 {
-  "membrane":[
-    {
-      "path": "/membrane/httpServer",
-      "name": "httpServer"
-    },
-    {
-      "path": "/membrane/websocketServer",
-      "name": "websocketServer"
-    }
-  ],
-  "plasma": [
-    "/plasma/pageRouter",
-    "/plasma/dataFetcher",
-    "/plasma/pageRender"
-  ]
+  "membrane":{
+  },
+  "plasma": {
+  }
 }
