@@ -2,7 +2,7 @@
   "author": "Boris Filipov",
   "concept": "Boris Filipov & Valeri Bogdanov",
   "name": "organic",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "repository": {
     "type": "git",
     "url": "git://github.com/VarnaLab/node-organic.git"
@@ -12,14 +12,18 @@
   },
   "main": "./index.js",
   "dependencies": {
-    "colors": "latest"
+    "colors": "latest",
+    "glob": "latest",
+    "merge-recursive": "latest"
   },
   "directories": {
     "lib": "./lib",
     "examples": "./examples",
     "bin": "./bin"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "jasmine-node": "latest"
+  },
   "optionalDependencies": {},
   "engines": {
     "node": "*"
