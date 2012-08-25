@@ -7,9 +7,6 @@
     "type": "git",
     "url": "git://github.com/VarnaLab/node-organic.git"
   },
-  "bin": {
-    "cell": "./bin/cell.js"
-  },
   "main": "./index.js",
   "dependencies": {
     "colors": "latest",
