@@ -15,8 +15,7 @@
   },
   "directories": {
     "lib": "./lib",
-    "examples": "./examples",
-    "bin": "./bin"
+    "examples": "./examples"
   },
   "devDependencies": {
     "jasmine-node": "latest"
