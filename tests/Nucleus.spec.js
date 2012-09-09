@@ -14,7 +14,7 @@ describe("Nucleus", function(){
           "source": "lib.Organel"
         },
         "MyObject2": {
-          "source": "node_modules.merge-recursive.lib"
+          "source": "lib.Organel"
         }
       }
     }, {});
