@@ -3,11 +3,10 @@ node-organic
 
 Organic development in node.js
 
-node-organic-blog
-=================
+cells
+=====
+https://github.com/outbounder/organic-webcell
 
-run by 
-- cd in ./examples/blog
-- npm link ../../
-- npm install
-- cell
+applications
+============
+https://github.com/camplight/camplight.net
