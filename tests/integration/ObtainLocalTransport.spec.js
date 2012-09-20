@@ -1,4 +1,3 @@
-//todo
 var organic = require("../../index");
 var Gateway = require("../../lib/tunnel/Gateway");
 var Transport = require("../../lib/tunnel/Transport");
