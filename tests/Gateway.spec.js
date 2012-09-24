@@ -68,5 +68,41 @@
     gate.emit(chem);
   });
   
-  //TODO: Gateway.close();
+  it("Gateway.close() should close underlying transport and reset the gateway", function(){
+  	var transportClosed = false
+  
+  	var tr = Object.create(transportMock);
+  	tr.closed = false;
+  	tr.first = 0;
+  	tr.last = 0;
+  	tr.close = function () {
+  		this.closed = true;
+  	}; 
+  	tr.emit = function (chem) {
+  		if (chem === "first")
+  			tr.first ++;
+  		else if (chem === "last")
+  			tr.last ++;
+  	}; 
+    var address = "targetAddressIsString";
+    var plasma = { 
+    	"emit":function(chemical){
+    		expect(chemical.address).toBe(address);
+	    	expect(function () {
+	    		chemical.callback(tr);
+	    	}).not.toThrow(); //return transport
+    	} 
+    };
+ 
+    var gate = new Gateway(address, plasma);
+    
+    gate.emit("first");
+    expect(tr.first).toBe(1);
+    
+    gate.close();
+    expect(tr.closed).toBe(true);
+    
+    gate.emit("last");
+    expect(tr.last).toBe(1);
+  });
 });
