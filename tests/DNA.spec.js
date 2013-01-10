@@ -72,4 +72,14 @@ describe("DNA", function(){
     expect(dna.membrane.organel1.source).toBeDefined();
     expect(dna.membrane.organel1.config).toBeDefined();
   });
+
+  it("should map directory to branch", function(){
+    dna = new DNA();
+    expect(dna instanceof DNA).toBe(true);
+    dna.mapDirectoryToBranch("data", __dirname+"/data", function(){
+      expect(dna.data).toBeDefined();
+      expect(dna.data.Organel).toBeDefined();
+      expect(dna.data.Organel.source).toBeDefined();
+    })
+  })
 })
