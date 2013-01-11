@@ -11,7 +11,8 @@
   "dependencies": {
     "colors": "latest",
     "glob": "latest",
-    "merge-recursive": "latest"
+    "merge-recursive": "latest",
+    "xtend": "latest"
   },
   "directories": {
     "lib": "./lib",
