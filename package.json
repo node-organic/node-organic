@@ -14,11 +14,11 @@
     "merge-recursive": "latest"
   },
   "directories": {
-    "lib": "./lib",
-    "examples": "./examples"
+    "lib": "./lib"
   },
   "devDependencies": {
-    "jasmine-node": "latest"
+    "jasmine-node": "latest",
+    "shelljs": "latest"
   },
   "optionalDependencies": {},
   "engines": {
