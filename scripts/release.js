@@ -44,6 +44,11 @@ if(exec("npm publish").code != 0){
   exit(1);
 }
 
+if(exec("git push upstream master").code != 0){
+  echo("Error: failed to git push upstream");
+  exit(1);
+}
+
 if(exec("git checkout develop").code != 0){
   echo("Error: failed to checkout develop");
   exit(1);
