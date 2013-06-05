@@ -12,7 +12,8 @@
     "colors": "0.6.0-1",
     "glob": "3.1.14",
     "merge-recursive": "0.0.3",
-    "xtend": "1.0.3"
+    "xtend": "1.0.3",
+    "dict":"latest"
   },
   "directories": {
     "lib": "./lib"
