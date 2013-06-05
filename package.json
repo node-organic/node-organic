@@ -2,7 +2,7 @@
   "author": "Boris Filipov",
   "concept": "Boris Filipov & Valeri Bogdanov",
   "name": "organic",
-  "version": "0.0.11",
+  "version": "0.0.12",
   "repository": {
     "type": "git",
     "url": "git://github.com/VarnaLab/node-organic.git"
@@ -12,7 +12,8 @@
     "colors": "0.6.0-1",
     "glob": "3.1.14",
     "merge-recursive": "0.0.3",
-    "xtend": "1.0.3"
+    "xtend": "1.0.3",
+    "dict":"latest"
   },
   "directories": {
     "lib": "./lib"
