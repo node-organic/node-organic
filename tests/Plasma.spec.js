@@ -38,7 +38,7 @@ describe("Plasma", function(){
     expect(c).toBe(1);
   });
 
-  it("should unregister listerner for chemical", function(){
+  it("should unregister listener for chemical", function(){
     var c = 0;
     var m = function(){
       c += 1;
@@ -48,5 +48,30 @@ describe("Plasma", function(){
     plasma.off("test3", m);
     plasma.emit(new Chemical("test3"));
     expect(c).toBe(1);
+  });
+  
+  it("should not throw exception if no listeners are registered for a given chemical", function(){
+    expect(function () {
+      var plasma2 = new Plasma();
+      plasma2.emit(new Chemical("Test 4"));
+    }).not.toThrow(); 
+  });
+  
+   it("propagates event until the handler returns value different from false", function(next){
+    var plasma2 = new Plasma();
+    var KEY = "test5";
+    plasma2.on(KEY, function (chemical, callback) {
+      return false;
+    });
+    
+    plasma2.on(KEY, function (chemical, sender, callback) {
+      return false;
+    })
+    
+    plasma2.on(KEY, function (chemical, callback) {
+      next();
+    })
+    
+    plasma2.emit(new Chemical(KEY));
   });
 });
