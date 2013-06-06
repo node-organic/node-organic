@@ -56,4 +56,22 @@ describe("Plasma", function(){
       plasma2.emit(new Chemical("Test 4"));
     }).not.toThrow(); 
   });
+  
+   it("propagates event until the handler returns value different from false", function(next){
+    var plasma2 = new Plasma();
+    var KEY = "test5";
+    plasma2.on(KEY, function (chemical, callback) {
+      return false;
+    });
+    
+    plasma2.on(KEY, function (chemical, sender, callback) {
+      return false;
+    })
+    
+    plasma2.on(KEY, function (chemical, callback) {
+      next();
+    })
+    
+    plasma2.emit(new Chemical(KEY));
+  });
 });
