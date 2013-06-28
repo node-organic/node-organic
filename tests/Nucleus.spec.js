@@ -17,9 +17,9 @@ describe("Nucleus", function(){
           "source": "lib.Organel"
         }
       }
-    }, {});
+    });
 
-    var objects = nucleus.createNamespace("objects");
+    var objects = nucleus.build("objects");
     expect(objects[0] instanceof Organel).toBe(true);
   });
 });
