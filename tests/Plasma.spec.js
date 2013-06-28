@@ -74,4 +74,25 @@ describe("Plasma", function(){
     
     plasma2.emit(new Chemical(KEY));
   });
+   
+  it("is decorated by passing an appropriate function to the use method", function () {
+      var plasma2 = new Plasma();
+      var decoration = function (state) {
+        this.getState = function (id) {
+          return state[id];
+        };
+        this.setState = function (id, val) {
+          state[id] = val;
+        };
+      };
+      
+      var decorated = plasma2.use(decoration);
+      //check plasma methods are still accessible
+      plasma2.emit(new Chemical("Test 4"));
+      
+      decorated.setState("k", 5);
+      var res = decorated.getState("k");
+      expect(res).toBe(5);
+    
+  });
 });

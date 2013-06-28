@@ -13,7 +13,8 @@
     "glob": "3.1.14",
     "merge-recursive": "0.0.3",
     "xtend": "1.0.3",
-    "dict":"latest"
+    "dict":"latest",
+    "node-uuid":"latest"
   },
   "directories": {
     "lib": "./lib"
