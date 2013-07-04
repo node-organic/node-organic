@@ -2,7 +2,7 @@ describe("Nucleus demo", function(){
   var Nucleus = require("../../index").Nucleus;
   
   it("usage 1", function(){
-    var nucleus = new Nucleus({
+    var nucleus = new Nucleus({}, {
       "branchName": {
         "organelleName": {
           "source": "lib.Organel"
@@ -22,13 +22,14 @@ describe("Nucleus demo", function(){
   })
 
   it("usage 2", function(next){
-    var nucleus = new Nucleus({
+    var _plasma = {};
+    var nucleus = new Nucleus(_plasma, {
       "branchX": {
         "organelY": {
           "key": "value",
           "source": function(plasma, config, nucleus){
             expect(config.key).toBe("value");
-            expect(plasma).not.toBeDefined();
+            expect(plasma).toBe(_plasma);
             expect(nucleus).toBeDefined();
             next();
           }
