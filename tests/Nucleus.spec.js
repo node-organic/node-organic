@@ -8,7 +8,7 @@ describe("Nucleus", function(){
   });
 
   it("should createNamespace of objects", function(){
-    nucleus = new Nucleus({
+    nucleus = new Nucleus({}, {
       "objects": {
         "MyObject1": {
           "source": "lib.Organel"
