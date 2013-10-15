@@ -3,7 +3,7 @@ node-organic
 
 Organic development in node.js
 
-* [documentation](https://github.com/VarnaLab/node-organic/blob/master/docs/README.md)
+* [documentation](https://github.com/VarnaLab/node-organic/blob/master/docs)
 
 * [collection of organics](http://wisdom.camplight.net/wisdomgroup/51182789c131215746000001/Organic)
 * [trello board](https://trello.com/board/node-organic/50659ffd3a3664af033e2024)
