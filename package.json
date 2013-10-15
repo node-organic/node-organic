@@ -8,13 +8,16 @@
     "url": "git://github.com/VarnaLab/node-organic.git"
   },
   "main": "./index.js",
+  "scripts": {
+    "test": "jasmine-node ./tests"
+  },
   "dependencies": {
     "colors": "0.6.0-1",
     "glob": "3.1.14",
     "merge-recursive": "0.0.3",
     "xtend": "1.0.3",
-    "dict":"latest",
-    "node-uuid":"latest"
+    "dict":"1.4.0",
+    "node-uuid":"1.4.1"
   },
   "directories": {
     "lib": "./lib"
