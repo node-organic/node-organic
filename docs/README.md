@@ -26,35 +26,20 @@ By definition one reaction is triggered with incoming Chemical or ChemicalCompou
 One general reaction to a chemical is having this simple form:
 
     var reaction = function(c, next) {
-      if(err) return next && next(err) // optional
       // .... do some actual work on `c`
-      next && next(c || new Chemical) // optional
+      next()
     }
 
-It is then suitable to map reactions also as Chemical transformations, persistance/storage, rendering & etc.
-Reactions however can go with other forms in different contexts. For example in `http` context a wide used reaction form is as follows:
+Reactions also are usually chained (executed sequencially one by one) in the form of a single reaction or based on given properties and values of the Chemical are split/switched between different reactions.
 
-    var reaction = function(req, res, next) {
-      if(err) return next && next(err) // optional
-      // req and res are refferenced objects of a single Chemical usually in organic implementations.
-      next && next(req, res, next) // optional
-    }
+All these are usually provided as reaction builder/helpers within packages such as:
 
-or
-
-    var reaction = function(err, req, res, next) {
-      if(err) return next && next(err) // optional
-      // err, req and res are refferenced objects of a single Chemical usually in organic implementations.
-      next && next(err, req, res, next) // optional
-    }
-
-Having a single reaction however does have ability to execute sub-reactions. Reactions also are usually chained (executed sequencially one by one) in the form of a single reaction or based on given properties and values of the Chemical are split/switched between different reactions.
-
-All these are usually provided as reaction builder/helpers as packages such as organic-alchemy
+ * [reactions](https://github.com/vbogdanov/reactions)
+ * [organic-alchemy](https://github.com/outbounder/organic-alchemy)
 
 ## Organelles
 
-These are the building blocks of organic ecosystem, they in general are colonable components of reactions with given `self-state`. Usually organelles are simple class (OOP) implementations having the following form:
+These are the building blocks of organic ecosystem, they in general are clonable components of reactions with given `self-state`. Usually organelles are simple class implementations having the following form:
 
     var Organelle = function(plasma, dna) {
       // plasma, dna are dependency injected properties when the Organelle is used within organic living cell.
