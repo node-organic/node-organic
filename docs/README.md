@@ -2,12 +2,12 @@
 
 ## Chemicals
 
-Every chemical has a name and its nature is as plain object filled with properties (primitive values and/or references to other objects). A Chemical having references to other objects can be envisioned as ChecamilCompount. It is wise to have compounts serializable(usually providing toJSON method), as one can never know to where the chemicals could travel.
+Every chemical has a type and its nature is as plain object filled with properties (primitive values and/or references to other objects). A Chemical having references to other objects can be envisioned as ChemicalCompount. It is wise to have compounts serializable(usually providing toJSON method), as one can never know to where the chemicals could travel.
 
 So one chemical has this generalized structure
 
     {
-      name: String,
+      type: String, //or constructor: Function
       reference: Object,
       // ...
       property: Value
@@ -19,15 +19,38 @@ So one chemical has this generalized structure
 
 ## Reactions
 
-That is the `actual work been done` over chemicals. Also it can be reffered as the chains of logic forming reactions to given `incoming` (such as user, browser agent or other) actions.
+Reactions are `asyncronious` operation performed over a chemical solution (one or more chemicals). Reactions (usually) take the form:
+    
+    function aReaction(c:Chemical(s), done:Done):void
+    
+where Done is:
+    
+    function aDone(error:Error/false, data:Chemical(s)):void
+    
+The done callback is invoked only once during reaction execution, with either error or result (data).
+Furthermore, Reactions can be considered event handlers, with the passed chemical being the event itself. As such they can handle given incoming actions (from user, browser agent or other). 
 
-By definition one reaction is triggered with incoming Chemical or ChemicalCompount and can thereafter decide to aggragete the it (referred for simplicity as `c`), pass it as output to the next reaction if any (referred as `next`) or do both.
+Individual reactions are responsible to specify in their contract:
 
-One general reaction to a chemical is having this simple form:
+   * the type of chemical(s) they accept and the type of chemical(s) they pass as results. Errors are always of type `Error`. 
+   * is the chemical passed to them modified during the reaction.
+   * is null/undefined a valid result on success. Searching reactions are encouraged to do so if the result is "not found" (opposed to returning an error).
 
-    var reaction = function(c, next) {
-      // .... do some actual work on `c`
-      next()
+
+Reactions are required to:
+
+   * invoke `done` ONCE. Reactions are usually grouped in chains, failure to invoke done will send the whole chain in blocked state.
+   * invoke `done` either with `error` or `false, data`.
+   * not throw an exception.
+
+A simple example reaction will look like this:
+
+    var divide = function (c, done) {
+      if (c.b === 0) {
+        done (new Error("can not divide by zero"));
+      }
+      var result = c.a / c.b;
+      done(false, result);
     }
 
 Reactions also are usually chained (executed sequencially one by one) in the form of a single reaction or based on given properties and values of the Chemical are split/switched between different reactions.
