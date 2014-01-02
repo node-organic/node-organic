@@ -2,7 +2,7 @@
 
 ## Chemicals
 
-Every chemical has a type and its nature is as plain object filled with properties (primitive values and/or references to other objects). A Chemical having references to other objects can be envisioned as ChemicalCompount. It is wise to have compounts serializable(usually providing toJSON method), as one can never know to where the chemicals could travel.
+Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). A Chemical having references to other objects can be envisioned as ChemicalCompound. It is wise to have compounds serializable(usually providing toJSON method), as one can never know where the chemicals could travel to.
 
 So one chemical has this generalized structure
 
@@ -41,7 +41,7 @@ Reactions are required to:
 
    * invoke `done` ONCE. Reactions are usually grouped in chains, failure to invoke done will send the whole chain in blocked state.
    * invoke `done` either with `error` or `false, data`.
-   * not throw an exception.
+   * not to throw an exception.
 
 A simple example reaction will look like this:
 
