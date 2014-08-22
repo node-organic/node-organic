@@ -119,16 +119,16 @@ The standard naming convesion of a Cell is called Application.
 
 This is the abstract form of the action of birth of a living Cell. It is usually a single constructor logic which brings up Plasma and Nucles. Most of the cases the Cell also provides an reaction support to "build" Chemicals which are then piped to Nucleus for execution.
 
-    var Cell = function Cell(){
+    var Cell = function Cell(dna){
       this.plasma = new Plasma()
-      var nucleus = new Nucleus(this.plasma)
+      var nucleus = new Nucleus(this.plasma, dna)
       this.plasma.on("build", nucleus.build)
     }
-
 
     var query = require("organic-dna-query")
     var loadDir = require("organic-dna-fsloader")
     var dna = new DNA()
+    
     loadDir(dna, "cwd/relative/path/to/dna", function(){
       var instance = new Cell(dna)
       // trigger reaction in creating Organelles
