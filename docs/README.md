@@ -9,7 +9,7 @@ Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriti
 
 ## [Chemical](./Chemical.md)
 
-In standard naming convesions Chemical is data structure.
+In standard naming convesions Chemical is raw data structure.
 
 Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). 
 
@@ -25,39 +25,52 @@ One chemical has this generalized structure
       function: Function(also an Object or Class)
     }
 
-## Reactions
+## [Reactions](./Reactions.md)
 
-In standard naming convesions Reactions are function/method calls.
+In standard naming convesions Reactions are implementations of functions with optional callback support.
 
-Reactions are `asyncronious` operations performed over a chemical solution (one or more chemicals). Reactions (usually) take the form:
+Reactions are operations performed over a chemical solution (one or more chemicals). 
+Reactions take the form:
     
     function reaction(c:Chemical(s) [, done:Done]):void
     
 where Done is optional and having the following definition:
     
     function done(error:Error/false, data:Chemical(s)):void
-    
-Reactions can be considered event handlers, with the passed chemical being the event itself. They are required to:
 
-   * declare `done` as argument when reaction logic is asynchronious.
-     * always invoke `done` once declared wither with `error` argument or with `false, data` arguments.
-   * not to throw an exception.
+## [DNA](./DNA.md)
 
-A simple example reaction looks like the following:
+In standard naming convesions DNA is implementation of Configuration utilities and structure.
 
-    var divide = function (c, done) {
-      if (c.b === 0) {
-        return done(new Error("can not divide by zero"));
+It is the collected internal knowledge of the entire cell application - its relations, abilities, build phases, functionalities and modes. DNA information can be acquired from various sources and can be transmited across various mediums if needed.
+
+    var dnaStructure = {
+      "OrganelleName": {
+        "source": "path/to/organelle_implementation"
+      },
+      "branchName": {
+        "OrganelleName2": "path/to/implementation"
       }
-      var result = c.a / c.b;
-      done(false, result);
     }
+    
+    var dna = new DNA(dnaStructure)
+    console.log(dna.OrganelleName.source) // "path/to/organelle_implementation"
+
+## [Plasma](./Plasma.md)
+
+In standart naming convesions Plasma is implementation of EventBus/EventDispatcher/PubSub pattern.
+
+It is the fluid/environment which contains different kinds and copies of Organelles and/or Chemicals. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
+
+    var plasma = new Plasma()
+    plasma.on("ChemicalName", function(c){ /* ... chemical reaction logic ... */})
+    plasma.emit({type: "ChemicalName"})
 
 ## [Organelles](./Organel.md)
 
-In standart naming convesions single Organelle is a Controller.
+In standart naming convesions Organelle is implementation of Controller/Command/Strategy pattern.
 
-These are the building blocks of organic application, they in general are clonable components of reactions with given `self-state`. Organelles are simple class implementations having the following form:
+These are the building blocks of organic application. Organelles are simple class implementations having the following form:
 
     var Organelle = function(plasma, dna) {
       this.plasma = plasma
@@ -70,40 +83,13 @@ These are the building blocks of organic application, they in general are clonab
       // -- calls next()
     }
 
-## [Plasma](./Plasma.md)
+## [Nucleus](./Nucleus.md) 
 
-In standart naming convesions Plasma is EventBus/EventDispatcher/PubSub Pattern.
+In standard naming convesions Nucles is implementation of DependencyInjector/Factory pattern.
 
-It is the fluid/environment which contains different kinds and copies of Organelles and/or Chemicals. This is a Class(OOP) implementation with support of decorations/extensions/plugins. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
+Nucleus is an Organelle. It however has reactions vital for a living Cell - ability to process DNA and execute reactions involved in constructing Organelles. The DNA itself is a plan Chemical.
 
-    var plasma = new Plasma()
-    plasma.on("ChemicalName", Reaction)
-    plasma.off("ChemicalName", Reaction)
-    plasma.once("ChemicalName", Reaction)
-    // ... any kind of plasma interaction can be achieved by decorating it.
-    plasma.onAll("ChemicalName1", "ChemicalName2", Reaction)
-
-## [Nucleus](./Nucleus.md) and [DNA](./DNA.md)
-
-The standard naming convesions Nucles and DNA are respectively DependencyInjector/Factory and Configuration.
-
-Nucleus is an Organelle. It however has reactions vital for a living Cell - ability to read DNA and execute reactions involved in constructing Organelles. The DNA itself is a plan Chemical.
-
-    var dnaStructure = {
-      "OrganelleName": {
-        "source": "path/to/organelle_implementation"
-      },
-      "branchName": {
-        "OrganelleName2": "path/to/implementation"
-      }
-    }
-    
-    var plasma = new Plasma()
-    var query = require("organic-dna-query")
-    var dna = new DNA(dnaStructure)
-
-    // construct Nucleus giving its own dna branch for configuration.
-    var nucleus = new Nucleus(plasma, query(dna, "nucleus"))
+    var nucleus = new Nucleus(plasma, dna)
 
     // add ability to construct organelles on demand via "build" typed chemical.
     plasma.on("build", nucleus.build, nucleus) 
@@ -111,11 +97,11 @@ Nucleus is an Organelle. It however has reactions vital for a living Cell - abil
     // build some organelles from dna
     plasma.emit({type: "build", dna: query(dna, "organelles.plasma")})
 
-## [Cell](./Cell.md)
+## Cell
 
 The standard naming convesion a Cell is called Application.
 
-This is the abstract form of the action of building. It is usually a single constructor logic which brings up Plasma and Nucles. The Cell can also provide an reaction support to "build" Chemicals which are then piped to Nucleus for execution.
+This is the abstract form of the building action. It is usually a single constructor logic which brings up Plasma and Nucles. The Cell can also provide reaction support to "build" Chemicals which are then piped to Nucleus's build implementation for execution.
 
     // simple cell definition
     var Cell = function Cell(dna){
@@ -142,3 +128,6 @@ This is the abstract form of the action of building. It is usually a single cons
 Cells can be in different kinds - command line, web services, desktop apps. 
 Cells themselfs can form up and organize into a Systems. 
 Different kinds of systems can build up even more complex structures interconnecting with each other like Organisms...
+
+-----
+Note that the proposed concept and implementation doesn't reflect the actual nature order and processes. It is not a simulation of nature patterns but rather the resulted abstract form of them applicable within the Software Engineering discipline.
