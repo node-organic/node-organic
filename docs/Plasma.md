@@ -21,7 +21,7 @@ Should implement construction and building logic of Plasma instance.
 Should implement logic for registering reaction functions capable to handle chemicals by given pattern.
 
 * `chemicalPattern` is a value used to link emitted chemicals to their respective reaction functions. Current implementations assume chemicalPatterns as of having String, Object and/or Prototype values.
-* `reactionFn` is expected to have the form of [Reaction function](./Reacitons.md)
+* `reactionFn` is expected to have the form of [Reaction function](./Reacitons.md#reactionfn)
 * `context` argument is optional and is indicator that the `reactionFn` should be invoked with other than its own context.
 
 ### function off(chemicalPattern, reactionFn)
@@ -40,4 +40,4 @@ Should implement the same logic as `function on(...)` with the important differe
 Should implement logic for trasmitting and delivering chemicals to registered reaction functions based on their respective patterns.
 
 * `chemical` is expected to implement [Chemical](./Chemica.md).
-* `callback` is optional and is expected to implement [reactionFn's callback form](./Reactions.md).
+* `callback` is optional and is expected to implement [reactionFn's callback form](./Reactions.md#reactionfn-callback).
