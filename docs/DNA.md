@@ -18,6 +18,6 @@ It is the collected internal knowledge of the entire cell application - its rela
 
 ### construction function DNA(data)
 
-Should implement [Chemical's constructor function logic](./Chemical) at least.
+Should implement [Chemical's constructor function logic](./Chemical.md) at least.
 
 > Every property of data object if present will be copied over the DNA object.
