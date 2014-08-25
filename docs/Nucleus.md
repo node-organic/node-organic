@@ -37,4 +37,4 @@ Should implement construction and build logic for Nucleus Organelle.
 Should implement logic for building Organelles using combined information from `chemical` argument and provided `dna` structure upon construction.
 
 * `chemical` is expected to implement [Chemical](./Chemical.md)
-* `callback` is expected to implement [ReactionFn callback form](./Reactions.md)
+* `callback` is expected to implement [ReactionFn callback form](./Reactions.md#reactionfn-callback)
