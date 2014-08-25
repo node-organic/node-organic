@@ -1,15 +1,22 @@
-# An Organic concept
+# An Organic concept v0.2
+
+[Organic Computing](en.wikipedia.org/wiki/Organic_computing) inspired implementation based on nodejs.
+
+This document represents a draft outline of the fundamental principles, understandings and concepts in engineering `node-organic` as package library named `organic` published in http://npmjs.org.
+
+The library represents abstract form of the implementation bundled with concept documentation. 
+Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriting `organic` core classes provide actual implementation and the ability to extend, improve and adapt forthermore the concept and its outcome.
 
 ## [Chemical](./Chemical.md)
 
 In standard naming convesions Chemical is data structure.
 
-Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). It is wise to have chemicals serializable usually providing toJSON method.
+Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). 
 
 One chemical has this generalized structure
 
     {
-      type: String, /* not needed if using Chemical object inheritance */
+      type: String,
       // ...
       reference: Object,
       // ...
@@ -24,32 +31,23 @@ In standard naming convesions Reactions are function/method calls.
 
 Reactions are `asyncronious` operations performed over a chemical solution (one or more chemicals). Reactions (usually) take the form:
     
-    function aReaction(c:Chemical(s), done:Done):void
+    function reaction(c:Chemical(s) [, done:Done]):void
     
-where Done is:
+where Done is optional and having the following definition:
     
-    function aDone(error:Error/false, data:Chemical(s)):void
+    function done(error:Error/false, data:Chemical(s)):void
     
-Furthermore, Reactions can be considered event handlers, with the passed chemical being the event itself. As such they can handle given incoming actions (from user, browser agent or other). 
+Reactions can be considered event handlers, with the passed chemical being the event itself. They are required to:
 
-Individual reactions are responsible to specify in their contract:
-
-   * the type of chemical(s) they accept and the type of chemical(s) they pass as results. Errors are always of type `Error`. 
-   * is the chemical passed to them modified during the reaction.
-   * is null/undefined a valid result on success. Searching reactions are encouraged to do so if the result is "not found" (opposed to returning an error).
-
-
-Reactions are required to:
-
-   * invoke `done`. Reactions are usually grouped in chains, failure to invoke done will send the whole chain in blocked state.
-   * invoke `done` either with `error` argument or with `false, data` arguments.
+   * declare `done` as argument when reaction logic is asynchronious.
+     * always invoke `done` once declared wither with `error` argument or with `false, data` arguments.
    * not to throw an exception.
 
-A simple example reaction looks like this:
+A simple example reaction looks like the following:
 
     var divide = function (c, done) {
       if (c.b === 0) {
-        done (new Error("can not divide by zero"));
+        return done(new Error("can not divide by zero"));
       }
       var result = c.a / c.b;
       done(false, result);
@@ -63,12 +61,12 @@ These are the building blocks of organic application, they in general are clonab
 
     var Organelle = function(plasma, dna) {
       this.plasma = plasma
-      plasma.on(dna.reactOn, this.reactionToChemical)
+      plasma.on(dna.reactOn, this.reactionToChemical, this)
     }
 
     Organelle.prototype.reactionToChemical = function(c, next) {
       // -- reaction logic
-      // -- submits new chemical in plasma via plasma.emit(...) 
+      // -- submits new chemical in plasma via this.plasma.emit(...) 
       // -- calls next()
     }
 
@@ -76,7 +74,7 @@ These are the building blocks of organic application, they in general are clonab
 
 In standart naming convesions Plasma is EventBus/EventDispatcher/PubSub Pattern.
 
-It is the fluid/environment which contains different kinds and copies of Organelles and/or Chemicals. This is a Class(OOP) implementation usually with support of decorations/extensions/plugins. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
+It is the fluid/environment which contains different kinds and copies of Organelles and/or Chemicals. This is a Class(OOP) implementation with support of decorations/extensions/plugins. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
 
     var plasma = new Plasma()
     plasma.on("ChemicalName", Reaction)
@@ -115,23 +113,28 @@ Nucleus is an Organelle. It however has reactions vital for a living Cell - abil
 
 ## [Cell](./Cell.md)
 
-The standard naming convesion of a Cell is called Application.
+The standard naming convesion a Cell is called Application.
 
-This is the abstract form of the action of birth of a living Cell. It is usually a single constructor logic which brings up Plasma and Nucles. Most of the cases the Cell also provides an reaction support to "build" Chemicals which are then piped to Nucleus for execution.
+This is the abstract form of the action of building. It is usually a single constructor logic which brings up Plasma and Nucles. The Cell can also provide an reaction support to "build" Chemicals which are then piped to Nucleus for execution.
 
+    // simple cell definition
     var Cell = function Cell(dna){
       this.plasma = new Plasma()
       var nucleus = new Nucleus(this.plasma, dna)
-      this.plasma.on("build", nucleus.build)
+      this.plasma.on("build", nucleus.build, nucleus)
     }
 
+    // load dna
     var query = require("organic-dna-query")
     var loadDir = require("organic-dna-fsloader")
     var dna = new DNA()
 
     loadDir(dna, "cwd/relative/path/to/dna", function(){
+
+      // instantiate 
       var instance = new Cell(dna)
-      // trigger reaction in creating Organelles
+
+      // trigger building
       instance.plasma.emit({type: "build", branch: "organelles.plasma"})
     })
     
