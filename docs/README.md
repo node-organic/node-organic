@@ -1,99 +1,48 @@
-# An Organic concept
+# An Organic concept v0.2
 
-## Chemicals
+[Organic Computing](en.wikipedia.org/wiki/Organic_computing) inspired implementation based on nodejs.
 
-Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). A Chemical having references to other objects can be envisioned as ChemicalCompound. It is wise to have compounds serializable(usually providing toJSON method), as one can never know where the chemicals could travel to.
+This document represents a draft outline of the fundamental principles, understandings and concepts in engineering `node-organic` as package library named `organic` published in http://npmjs.org.
 
-So one chemical has this generalized structure
+The library represents abstract form of the implementation bundled with concept documentation. 
+Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriting `organic` core classes provide actual implementation and the ability to extend, improve and adapt forthermore the concept and its outcome.
+
+## [Chemical](./Chemical.md)
+
+In standard naming convesions Chemical is raw data structure.
+
+Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). 
+
+One chemical has this generalized structure
 
     {
-      type: String, //or constructor: Function
+      type: String,
+      // ...
       reference: Object,
       // ...
       property: Value
       // ...
       function: Function(also an Object or Class)
-      // ...
-      toJSON: function(){}
     }
 
-## Reactions
+## [Reactions](./Reactions.md)
 
-Reactions are `asyncronious` operation performed over a chemical solution (one or more chemicals). Reactions (usually) take the form:
+In standard naming convesions Reactions are implementations of functions with optional callback support.
+
+Reactions are operations performed over a chemical solution (one or more chemicals). 
+Reactions take the form:
     
-    function aReaction(c:Chemical(s), done:Done):void
+    function reaction(c:Chemical(s) [, done:Done]):void
     
-where Done is:
+where Done is optional and having the following definition:
     
-    function aDone(error:Error/false, data:Chemical(s)):void
-    
-The done callback is invoked only once during reaction execution, with either error or result (data).
-Furthermore, Reactions can be considered event handlers, with the passed chemical being the event itself. As such they can handle given incoming actions (from user, browser agent or other). 
+    function done(error:Error/false, data:Chemical(s)):void
 
-Individual reactions are responsible to specify in their contract:
+## [DNA](./DNA.md)
 
-   * the type of chemical(s) they accept and the type of chemical(s) they pass as results. Errors are always of type `Error`. 
-   * is the chemical passed to them modified during the reaction.
-   * is null/undefined a valid result on success. Searching reactions are encouraged to do so if the result is "not found" (opposed to returning an error).
+In standard naming convesions DNA is implementation of Configuration utilities and structure.
 
-
-Reactions are required to:
-
-   * invoke `done` ONCE. Reactions are usually grouped in chains, failure to invoke done will send the whole chain in blocked state.
-   * invoke `done` either with `error` or `false, data`.
-   * not to throw an exception.
-
-A simple example reaction will look like this:
-
-    var divide = function (c, done) {
-      if (c.b === 0) {
-        done (new Error("can not divide by zero"));
-      }
-      var result = c.a / c.b;
-      done(false, result);
-    }
-
-Reactions also are usually chained (executed sequencially one by one) in the form of a single reaction or based on given properties and values of the Chemical are split/switched between different reactions.
-
-All these are usually provided as reaction builder/helpers within packages such as:
-
- * [reactions](https://github.com/vbogdanov/reactions)
- * [organic-alchemy](https://github.com/outbounder/organic-alchemy)
-
-## Organelles
-
-These are the building blocks of organic ecosystem, they in general are clonable components of reactions with given `self-state`. Usually organelles are simple class implementations having the following form:
-
-    var Organelle = function(plasma, dna) {
-      // plasma, dna are dependency injected properties when the Organelle is used within organic living cell.
-      // ... organelle construction work
-      plasma.on("ChemicalName", this.reactionToChemical) // suitable only within organic living cell
-    }
-
-    Organelle.prototype.reactionToChemical = function(c, next) {
-      // ...reaction logic
-    }
-
-So having different types of organelles which can be instantiated/created at will is like forming a living Cell.
-
-In standart naming convesions single Organelle is a Controller.
-
-## Plasma
-
-It is the fluid/environment which contains different kinds and copies of Organelles. This is a Class(OOP) implementation usually with support of decorations/extensions/plugins. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
-
-    var plasma = new Plasma()
-    plasma.on("ChemicalName", Reaction)
-    plasma.off("ChemicalName", Reaction)
-    plasma.once("ChemicalName", Reaction)
-    // ... any kind of plasma interaction can be achieved by decorating it.
-    plasma.onAll("ChemicalName1", "ChemicalName2", Reaction)
-
-In standart naming convesions Plasma is also referred as EventBus.
-
-## Nucleus and DNA
-
-This is an Organelle. It however has reactions vital of a living Cell - ability to read DNA and execute reactions involved in constructing Organelles. The DNA itself is a plan Chemical. Usually Nucleus organelles doesn`t react to Chemicals emitted into Plasma by themselfs, that is purpose of the Cell.
+It is the collected internal knowledge of the entire cell application - its relations, abilities, build phases, functionalities and modes. DNA information can be acquired from various sources and can be transmited across various mediums if needed.
 
     var dnaStructure = {
       "OrganelleName": {
@@ -103,25 +52,82 @@ This is an Organelle. It however has reactions vital of a living Cell - ability 
         "OrganelleName2": "path/to/implementation"
       }
     }
+    
     var dna = new DNA(dnaStructure)
-    var nucleus = new Nucleus(dna)
-    nucleus.build({"branch": ""}) // triggers building of "OrganelleName"
-    nucleus.build({"branch": "branchName"}) // triggers building of "OrganelleName2"
+    console.log(dna.OrganelleName.source) // "path/to/organelle_implementation"
 
-The standard naming convesions of Nucles and DNA are respectively DependencyInjector and Configuration.
+## [Plasma](./Plasma.md)
+
+In standart naming convesions Plasma is implementation of EventBus/EventDispatcher/PubSub pattern.
+
+It is the fluid/environment which contains different kinds and copies of Organelles and/or Chemicals. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
+
+    var plasma = new Plasma()
+    plasma.on("ChemicalName", function(c){ /* ... chemical reaction logic ... */})
+    plasma.emit({type: "ChemicalName"})
+
+## [Organelles](./Organel.md)
+
+In standart naming convesions Organelle is implementation of Controller/Command/Strategy pattern.
+
+These are the building blocks of organic application. Organelles are simple class implementations having the following form:
+
+    var Organelle = function(plasma, dna) {
+      this.plasma = plasma
+      plasma.on(dna.reactOn, this.reactionToChemical, this)
+    }
+
+    Organelle.prototype.reactionToChemical = function(c, next) {
+      // -- reaction logic
+      // -- submits new chemical in plasma via this.plasma.emit(...) 
+      // -- calls next()
+    }
+
+## [Nucleus](./Nucleus.md) 
+
+In standard naming convesions Nucles is implementation of DependencyInjector/Factory pattern.
+
+Nucleus is an Organelle. It however has reactions vital for a living Cell - ability to process DNA and execute reactions involved in constructing Organelles. The DNA itself is a plan Chemical.
+
+    var nucleus = new Nucleus(plasma, dna)
+
+    // add ability to construct organelles on demand via "build" typed chemical.
+    plasma.on("build", nucleus.build, nucleus) 
+
+    // build some organelles from dna
+    plasma.emit({type: "build", dna: query(dna, "organelles.plasma")})
 
 ## Cell
 
-This is the abstract form of the action of birth of a living Cell. It is usually a single constructor logic which brings up Plasma and Nucles. Most of the cases the Cell also provides an reaction support to "build" Chemicals which are then piped to Nucleus for execution.
+The standard naming convesion a Cell is called Application.
 
+This is the abstract form of the building action. It is usually a single constructor logic which brings up Plasma and Nucles. The Cell can also provide reaction support to "build" Chemicals which are then piped to Nucleus's build implementation for execution.
+
+    // simple cell definition
     var Cell = function Cell(dna){
-      this.plasma = new Plasma();
-      var nucleus = new Nucleus(this.plasma, dna);
-      this.plasma.on("build", nucleus.build)
+      this.plasma = new Plasma()
+      var nucleus = new Nucleus(this.plasma, dna)
+      this.plasma.on("build", nucleus.build, nucleus)
     }
-    var instance = new Cell(/* DNA */)
-    instance.plasma.emit("build", {"branch": "..."}) // triggers reaction in creating Organelles
 
-The standard naming convesion of a Cell is called Application.
+    // load dna
+    var query = require("organic-dna-query")
+    var loadDir = require("organic-dna-fsloader")
+    var dna = new DNA()
 
-Thus Cells can have different kinds - command line, web services, desktop apps. Cells themselfs can form up and organize into a Systems. Different kinds of systems can build up even more complex structures interconnecting with each other like Organisms...
+    loadDir(dna, "cwd/relative/path/to/dna", function(){
+
+      // instantiate 
+      var instance = new Cell(dna)
+
+      // trigger building
+      instance.plasma.emit({type: "build", branch: "organelles.plasma"})
+    })
+    
+
+Cells can be in different kinds - command line, web services, desktop apps. 
+Cells themselfs can form up and organize into a Systems. 
+Different kinds of systems can build up even more complex structures interconnecting with each other like Organisms...
+
+-----
+Note that the proposed concept and implementation doesn't reflect the actual nature order and processes. It is not a simulation of nature patterns but rather the resulted abstract form of them applicable within the Software Engineering discipline.

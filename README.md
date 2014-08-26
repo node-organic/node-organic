@@ -1,4 +1,4 @@
-node-organic
+[node-organic](http://node-organic.com)
 ============
 
 Organic development in node.js
