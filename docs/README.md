@@ -9,7 +9,7 @@ Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriti
 
 ## [Chemical](./Chemical.md)
 
-In standard naming convesions Chemical is raw data structure.
+In standard naming conventions Chemical is raw data structure.
 
 Every chemical has a type and in its nature is a plain object filled with properties (primitive values and/or references to other objects). 
 
@@ -27,7 +27,7 @@ One chemical has this generalized structure
 
 ## [Reactions](./Reactions.md)
 
-In standard naming convesions Reactions are implementations of functions with optional callback support.
+In standard naming conventions Reactions are implementations of functions with optional callback support.
 
 Reactions are operations performed over a chemical solution (one or more chemicals). 
 Reactions take the form:
@@ -40,7 +40,7 @@ where Done is optional and having the following definition:
 
 ## [DNA](./DNA.md)
 
-In standard naming convesions DNA is implementation of Configuration utilities and structure.
+In standard naming conventions DNA is implementation of Configuration utilities and structure.
 
 It is the collected internal knowledge of the entire cell application - its relations, abilities, build phases, functionalities and modes. DNA information can be acquired from various sources and can be transmited across various mediums if needed.
 
@@ -58,7 +58,7 @@ It is the collected internal knowledge of the entire cell application - its rela
 
 ## [Plasma](./Plasma.md)
 
-In standart naming convesions Plasma is implementation of EventBus/EventDispatcher/PubSub pattern.
+In standart naming conventions Plasma is implementation of EventBus/EventDispatcher/PubSub pattern.
 
 It is the fluid/environment which contains different kinds and copies of Organelles and/or Chemicals. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
 
@@ -68,7 +68,7 @@ It is the fluid/environment which contains different kinds and copies of Organel
 
 ## [Organelles](./Organel.md)
 
-In standart naming convesions Organelle is implementation of Controller/Command/Strategy pattern.
+In standart naming conventions Organelle is implementation of Controller/Command/Strategy pattern.
 
 These are the building blocks of organic application. Organelles are simple class implementations having the following form:
 
@@ -85,7 +85,7 @@ These are the building blocks of organic application. Organelles are simple clas
 
 ## [Nucleus](./Nucleus.md) 
 
-In standard naming convesions Nucles is implementation of DependencyInjector/Factory pattern.
+In standard naming conventions Nucles is implementation of DependencyInjector/Factory pattern.
 
 Nucleus is an Organelle. It however has reactions vital for a living Cell - ability to process DNA and execute reactions involved in constructing Organelles. The DNA itself is a plan Chemical.
 
@@ -99,7 +99,7 @@ Nucleus is an Organelle. It however has reactions vital for a living Cell - abil
 
 ## Cell
 
-The standard naming convesion a Cell is called Application.
+The standard naming conventions a Cell is called Application.
 
 This is the abstract form of the building action. It is usually a single constructor logic which brings up Plasma and Nucles. The Cell can also provide reaction support to "build" Chemicals which are then piped to Nucleus's build implementation for execution.
 
