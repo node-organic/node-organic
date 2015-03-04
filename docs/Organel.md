@@ -24,7 +24,7 @@ Should implement construction and building logic of Organelle.
 
 ### function dispose(chemical, callback)
 
-A [Reaciton](./Reactions.md#reactionfn) function. Should implement if required destruction and disposal logic of Organelle instance.
+A [Reaction](./Reactions.md#reactionfn) function. Should implement if required destruction and disposal logic of Organelle instance.
 
 * `chemical` is expected to implement [Chemical](./Chemical.md)
 * `callback` is expected to implement [reactionFn callback form](./Reactions.md#reactionfn-callback) form of `function(err, result)`
