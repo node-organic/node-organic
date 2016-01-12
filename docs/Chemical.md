@@ -1,15 +1,9 @@
 # Chemical
 
-One chemical has this generalized structure
+One chemical is just an Object structure:
 
     {
-      type: String,
-      // ...
-      reference: Object,
-      // ...
-      property: Value
-      // ...
-      function: Function(also an Object or Class)
+      // ... properties
     }
 
 ## abstract Chemical

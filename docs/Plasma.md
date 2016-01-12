@@ -1,14 +1,12 @@
 # Plasma
 
-This is a Class(OOP) implementation with support of decorations/extensions/plugins. The plasma also has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
+The plasma has main purpose in transmitting Chemicals between Organelles and within the Cell itself.
 
     var plasma = new Plasma()
-    plasma.on("ChemicalName", reactionFn)
-    plasma.off("ChemicalName", reactionFn)
-    plasma.once("ChemicalName", reactionFn)
-    
-    // ... any kind of plasma interaction can be achieved via applied on instance level decorations
-    plasma.onAll("ChemicalName1", "ChemicalName2", reactionFn)
+    plasma.on(chemicalPattern, reactionFn)
+    plasma.off(chemicalPattern, reactionFn)
+    plasma.once(chemicalPattern, reactionFn)
+    plasma.emit(chemical)
 
 ## abstract Plasma
 
@@ -16,28 +14,75 @@ This is a Class(OOP) implementation with support of decorations/extensions/plugi
 
 Should implement construction and building logic of Plasma instance.
 
-### function on(chemicalPattern, reactionFn [, context])
+### function on(chemicalPattern, reactionFn)
 
 Should implement logic for registering reaction functions capable to handle chemicals by given pattern.
 
-* `chemicalPattern` is a value used to link emitted chemicals to their respective reaction functions. Current implementations assume chemicalPatterns as of having String, Object and/or Prototype values.
-* `reactionFn` is expected to have the form of [Reaction function](./Reacitons.md#reactionfn)
-* `context` argument is optional and is indicator that the `reactionFn` should be invoked with other than its own context.
+* `chemicalPattern` - pattern for matching chemical(s)
+* `reactionFn` - reaction function upon matched chemical(s)
 
 ### function off(chemicalPattern, reactionFn)
 
 Should implement logic for unregistering reaction functions previously registered with respective chemicalPattern.
 
-* `chemicalPattern` is expected to have the same value when `reactionFn` has been registered.
-* `reactionFn` is expected to be the same `reactionFn` which has been previously registered.
-
-### function once(chemicalPattern, reactionFn [, context])
+### function once(chemicalPattern, reactionFn)
 
 Should implement the same logic as `function on(...)` with the important difference that `reactionFn` function should be invoked only once and then unregistered.
 
-### function emit(chemical [, callback])
+### function emit(chemical)
 
-Should implement logic for trasmitting and delivering chemicals to registered reaction functions based on their respective patterns.
+Should implement logic for trasmitting and delivering chemical(s) to registered reaction functions matched by their respective patterns.
 
 * `chemical` is expected to implement [Chemical](./Chemical.md).
-* `callback` is optional and is expected to implement [reactionFn's callback form](./Reactions.md#reactionfn-callback).
+
+#### action <-> feedback
+
+Nature's pattern for feedback and results delivery for organelles is based on emitting back a different chemical eg (over-simplified):
+
+```
+// worker organelle
+plasma.on(doWorkPattern, function (doWorkChemical) {
+  // do work with chemical
+  plasma.emit(doWorkResultsChemical)
+})
+
+// cell
+// register worker organelle results feedback
+plasma.on(doWorkResultsChemical, function (resultsChemical) {
+
+})
+// engage action on worker organelle
+plasma.emit(doWorkChemical)
+```
+
+However with increase in algorithmic complexity of implementations such can be shortened to be developer-friendly to its abstract form in code implementations:
+
+##### via callbacks
+
+```
+// worker organelle
+plasma.on(doWorkPattern, function (doWorkChemical, doneCallback) {
+  // do work with chemical
+  doneCallback(null, doWorkResults)
+})
+
+// cell
+// engage action on worker organelle
+plasma.emit(doWorkChemical, function (err, results) {
+
+})
+```
+
+##### via promises
+
+```
+// worker organelle
+plasma.on(doWorkPattern, function (doWorkChemical) {
+  // do work with chemical
+  return doWorkResultsPromise
+})
+
+// cell
+// engage action on worker organelle
+var doWorkResultsPromise = plasma.emit(doWorkChemical)
+```
