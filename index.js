@@ -1,5 +1,5 @@
-var fs = require("fs");
-var files = fs.readdirSync(__dirname+"/lib");
-for(var i = 0; i<files.length; i++)
-  if (files[i].indexOf(".js") !== -1)
-    module.exports[files[i].replace(".js", "")] = require("./lib/"+files[i]);
+module.exports.Chemical = require('./lib/Chemical')
+module.exports.DNA = require('./lib/DNA')
+module.exports.Nucleus = require('./lib/Nucleus')
+module.exports.Organel = require('./lib/Organel')
+module.exports.Plasma = require('./lib/Plasma')
