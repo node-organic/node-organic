@@ -92,6 +92,10 @@ Nucleus is an `Organelle`. It however has reactions vital for a 'living' Cells -
     // build some organelles from dna
     plasma.emit({type: "build", branch: dna.organelles})
 
+Implementations:
+
+* [organic-nucleus](https://github.com/outbounder/organic-nucleus)
+
 ## [Cell](./docs/Cell.md)
 
 Cell is **Application**.
