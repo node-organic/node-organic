@@ -10,7 +10,7 @@ It is the collected internal knowledge of the entire cell application - its rela
         "OrganelleName2": "path/to/implementation"
       }
     }
-    
+
     var dna = new DNA(dnaStructure)
     console.log(dna.OrganelleName.source) // "path/to/organelle_implementation"
 
@@ -18,6 +18,6 @@ It is the collected internal knowledge of the entire cell application - its rela
 
 ### construction function DNA(data)
 
-Should implement [Chemical's constructor function logic](./Chemical.md) at least.
+Should implement [Chemical's constructor function logic](./Chemical.md).
 
 > Every property of data object if present will be copied over the DNA object.
