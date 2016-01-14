@@ -16,7 +16,7 @@ Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriti
 
 Organic software development thereafter mimics nature's pattern for living cells representing their organization and structure within software applications.
 
-Main primitives of the conceptual implementation are listed bellow in this document. **Note that the terminology is intentionally choosen because every primitive comes with nature's fundamental properties/abilities/features proven to be naturaly scalable/extendable**
+Main primitives of the conceptual implementation are listed bellow in this document. **Note that the terminology is intentionally chosen because every primitive comes with nature's fundamental properties/abilities/features proven to be naturally scalable/extendable**
 
 ## [Chemical](./docs/Chemical.md)
 
@@ -35,7 +35,7 @@ One chemical has this generalized structure
 
 DNA is **configuration**.
 
-It is the collected internal knowledge of the entire cell application - its relations, abilities, build phases, functionalities and modes. DNA information can be acquired from various sources and can be transmited across various mediums if needed because it is a Chemical (raw data structure)
+It is the collected internal knowledge of the entire cell application - its relations, abilities, build phases, functionalities and modes. DNA information can be acquired from various sources and can be transmitted across various mediums if needed because it is a Chemical (raw data structure)
 
     var dnaStructure = {
       "OrganelleName": {
