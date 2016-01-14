@@ -9,7 +9,7 @@ This document represents a draft outline of the fundamental principles, understa
 The library represents abstract form of the implementation bundled with concept documentation.
 Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriting `organic` core classes provide actual implementation and the ability to extend, improve and adapt furthermore the concept and its outcome.
 
-## [Chemical](./Chemical.md)
+## [Chemical](./docs/Chemical.md)
 
 Chemical **is raw data structure**.
 
@@ -22,7 +22,7 @@ One chemical has this generalized structure
       // ... other custom properties
     }
 
-## [DNA](./DNA.md)
+## [DNA](./docs/DNA.md)
 
 DNA is **configuration**.
 
@@ -40,7 +40,7 @@ It is the collected internal knowledge of the entire cell application - its rela
     var dna = new DNA(dnaStructure)
     console.log(dna.OrganelleName.source) // "path/to/organelle_implementation"
 
-## [Plasma](./Plasma.md)
+## [Plasma](./docs/Plasma.md)
 
 Plasma is **EventBus/EventDispatcher/PubSub pattern**.
 
@@ -54,7 +54,7 @@ Implementations:
 
 * [organic-plasma](https://github.com/outbounder/organic-plasma)
 
-## [Organelles](./Organel.md)
+## [Organelles](./docs/Organel.md)
 
 Organelle is **Controller/Command/Strategy pattern**.
 
@@ -69,7 +69,7 @@ These are the building blocks of organic application. Organelles are simple clas
       // -- reaction logic
     }
 
-## [Nucleus](./Nucleus.md)
+## [Nucleus](./docs/Nucleus.md)
 
 Nucles is **DependencyInjector/Factory pattern**.
 
