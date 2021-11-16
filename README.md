@@ -2,7 +2,7 @@
 
 # Organic v1.0.0
 
-A concept & abstract implementation inspired by [Organic Computing](en.wikipedia.org/wiki/Organic_computing) usable for rapid software development having the following properties:
+A concept & abstract implementation inspired by [Organic Computing](en.wikipedia.org/wiki/Organic_computing) usable for evolving software development having the following properties:
 
 * Self-configuration
 * Self-optimization
@@ -10,9 +10,9 @@ A concept & abstract implementation inspired by [Organic Computing](en.wikipedia
 * Self-reflection
 
 The package represents abstract form of the implementation bundled with concept documentation.
-Further [modules/libraries/packages](http://node-organic.com/#/modules) inheriting `organic` core classes provide actual implementation and the ability to extend, improve and adapt furthermore the concept and its practical results.
+Further [modules/libraries/packages](https://github.com/node-organic) inheriting `organic` core classes provide actual implementation and the ability to extend, improve and adapt furthermore the concept and its practical results.
 
-`node-organic`(or just `organic`) is based on the nature's patterns for structural organization, control flow & etc. Its base abstract ground is found to be the usable for rapid engineering of complex systems.
+`node-organic`(or just `organic`) is based on the nature's patterns for structural organization, control flow & etc. Its base abstract ground is found to be the usable for natural engineering of complex systems.
 
 Organic software development thereafter mimics nature's pattern for living cells representing their organization and structure within software applications.
 
@@ -143,10 +143,16 @@ Note that the proposed concept and its respective implementations **doesn't simu
 The concept follows closely nature's patterns where applicable to software development discipline.
 
 
-Organic development in node.js
+## References
 
-* [documentation](https://github.com/VarnaLab/node-organic/blob/master/docs)
-* [organic-presentation-101](http://outbounder.github.io/organic-presentation-101/#/)
+* [documentation](https://github.com/node-organic/node-organic/tree/master/docs)
+
+## Links 
+
 * [organic development (an article at net.tutsplus.com)](http://net.tutsplus.com/tutorials/javascript-ajax/organic-development/)
-* [organic ecosystem](http://wisdom.camplight.net/wisdom/51194d8ca672da1148000007/ecosystem)
+* [organic-presentation-101](http://outbounder.github.io/organic-presentation-101/#/)
+
+
+## Legacy links
+
 * [trello board](https://trello.com/board/node-organic/50659ffd3a3664af033e2024)
