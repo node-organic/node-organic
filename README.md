@@ -147,6 +147,9 @@ The concept follows closely nature's patterns where applicable to software devel
 
 * [node-organic project organization](https://github.com/node-organic/node-organic/discussions/38)
 * [core documentation](https://github.com/node-organic/node-organic/tree/master/docs)
+* [discussions](https://github.com/node-organic/node-organic/discussions)
+* [issues](https://github.com/node-organic/node-organic/issues)
+* [newsletters](https://github.com/node-organic/node-organic/discussions/categories/announcements)
 
 ## Links 
 
