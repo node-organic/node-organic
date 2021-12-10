@@ -153,8 +153,8 @@ The concept follows closely nature's patterns where applicable to software devel
 
 ## Links 
 
-* [organic development (an article at net.tutsplus.com)](http://net.tutsplus.com/tutorials/javascript-ajax/organic-development/)
-* [organic-presentation-101](http://outbounder.github.io/organic-presentation-101/#/)
+* [organic development (an article at net.tutsplus.com)](https://net.tutsplus.com/tutorials/javascript-ajax/organic-development/)
+* [organic-presentation-101](https://outbounder.github.io/organic-presentation-101/#/)
 
 
 ## Legacy links
