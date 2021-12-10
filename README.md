@@ -134,7 +134,7 @@ Cells can be in different kinds - command line, web services, desktop apps.
 Cells themselfs can form up and organize into a Systems.
 Different kinds of systems can build up even more complex structures interconnecting with each other like Organisms...
 
-Implementations:
+Related implementations:
 
 * [organic-stem-skeleton](https://github.com/outbounder/organic-stem-skeleton)
 
@@ -145,7 +145,8 @@ The concept follows closely nature's patterns where applicable to software devel
 
 ## References
 
-* [documentation](https://github.com/node-organic/node-organic/tree/master/docs)
+* [node-organic project organization](https://github.com/node-organic/node-organic/discussions/38)
+* [core documentation](https://github.com/node-organic/node-organic/tree/master/docs)
 
 ## Links 
 
